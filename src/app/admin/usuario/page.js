@@ -22,6 +22,12 @@ export default function UsuarioPage() {
   const [message, setMessage] = useState({ type: "", text: "" });
 
   useEffect(() => {
+    // Verificar se auth está disponível
+    if (!auth) {
+      console.warn("Firebase auth not available");
+      return;
+    }
+
     // Carregar dados do usuário atual
     const user = auth.currentUser;
     if (user) {
@@ -47,6 +53,11 @@ export default function UsuarioPage() {
     setMessage({ type: "", text: "" });
 
     try {
+      // Verificar se auth está disponível
+      if (!auth) {
+        throw new Error("Sistema de autenticação não disponível");
+      }
+
       const user = auth.currentUser;
       if (!user) throw new Error("Usuário não autenticado");
 

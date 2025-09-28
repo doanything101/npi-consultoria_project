@@ -1,48 +1,80 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import AuthCheck from "../components/auth-check";
 import Card from "../components/card";
 import { getCorretores } from "../services";
 import { getUsuarios } from "../services/usuarios";
-
 import { getDashboard } from "../services/dashboard";
 import { formatterNumber } from "@/app/utils/formatter-number";
 
-// Disable static generation for admin pages
-export const dynamic = 'force-dynamic';
+export default function AdminDashboard() {
+  const [corretores, setCorretores] = useState([]);
+  const [users, setUsers] = useState({ users: [] });
+  const [dashboard, setDashboard] = useState({ data: {} });
+  const [isLoading, setIsLoading] = useState(true);
 
-export default async function AdminDashboard() {
-  let corretoresResponse, users, dashboard;
-  
-  try {
-    corretoresResponse = await getCorretores({}, 1, 20);
-  } catch (error) {
-    console.error("Erro ao carregar corretores:", error);
-    corretoresResponse = { corretores: [] };
-  }
-  
-  try {
-    const usersResponse = await getUsuarios();
-    users = usersResponse?.data || { users: [] };
-  } catch (error) {
-    console.error("Erro ao carregar usuários:", error);
-    users = { users: [] };
-  }
-  
-  try {
-    dashboard = await getDashboard();
-  } catch (error) {
-    console.error("Erro ao carregar dashboard:", error);
-    dashboard = { data: {} };
-  }
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        setIsLoading(true);
+        
+        // Carregar dados em paralelo
+        const [corretoresResponse, usersResponse, dashboardResponse] = await Promise.allSettled([
+          getCorretores({}, 1, 20),
+          getUsuarios(),
+          getDashboard()
+        ]);
 
-  // Verificar se corretores existe e é um array
-  const corretores = corretoresResponse?.corretores || [];
-  
+        // Processar corretores
+        if (corretoresResponse.status === 'fulfilled') {
+          setCorretores(corretoresResponse.value?.corretores || []);
+        } else {
+          console.error("Erro ao carregar corretores:", corretoresResponse.reason);
+          setCorretores([]);
+        }
+
+        // Processar usuários
+        if (usersResponse.status === 'fulfilled') {
+          setUsers(usersResponse.value?.data || { users: [] });
+        } else {
+          console.error("Erro ao carregar usuários:", usersResponse.reason);
+          setUsers({ users: [] });
+        }
+
+        // Processar dashboard
+        if (dashboardResponse.status === 'fulfilled') {
+          setDashboard(dashboardResponse.value || { data: {} });
+        } else {
+          console.error("Erro ao carregar dashboard:", dashboardResponse.reason);
+          setDashboard({ data: {} });
+        }
+      } catch (error) {
+        console.error("Erro geral ao carregar dados:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadData();
+  }, []);
+
   // Sort corretores by the number of linked properties in descending order
   const sortedCorretores = [...corretores]
     .filter(corretor => corretor?.imoveis_vinculados) // Filtrar apenas com propriedade válida
     .sort((a, b) => (b.imoveis_vinculados?.length || 0) - (a.imoveis_vinculados?.length || 0))
     .slice(0, 10);
+
+  if (isLoading) {
+    return (
+      <AuthCheck>
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-black"></div>
+        </div>
+      </AuthCheck>
+    );
+  }
 
   return (
     <AuthCheck>

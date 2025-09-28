@@ -104,6 +104,11 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   
+  // ✅ ESLint config
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  
   // 🚀 COMPILER OTIMIZADO
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',

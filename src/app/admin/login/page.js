@@ -16,6 +16,12 @@ export default function AdminLogin() {
   const router = useRouter();
 
   useEffect(() => {
+    // Verificar se auth está disponível
+    if (!auth) {
+      console.warn("Firebase auth not available");
+      return;
+    }
+
     // Se o usuário já está autenticado, redireciona para o dashboard
     if (auth.currentUser) {
       router.replace("/admin/dashboard");
@@ -33,6 +39,12 @@ export default function AdminLogin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (isAuthenticating) return; // Previne múltiplos submits
+
+    // Verificar se auth está disponível
+    if (!auth) {
+      setError("Sistema de autenticação não disponível. Tente novamente mais tarde.");
+      return;
+    }
 
     setIsAuthenticating(true);
     setError("");

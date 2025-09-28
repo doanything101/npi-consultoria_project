@@ -1,9 +1,20 @@
 "use client";
 
 import { useEffect } from "react";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
+import AdminFallback from "./components/fallback";
 
 export default function AdminIndex() {
-  // Remover redirecionamento automático
-  return null;
+  const router = useRouter();
+
+  useEffect(() => {
+    // Redirecionar para o dashboard após um pequeno delay
+    const timer = setTimeout(() => {
+      router.replace("/admin/dashboard");
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [router]);
+
+  return <AdminFallback />;
 }

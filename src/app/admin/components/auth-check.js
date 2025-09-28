@@ -11,6 +11,14 @@ export default function AuthCheck({ children }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // Verificar se auth está disponível (não é null)
+    if (!auth) {
+      console.warn("Firebase auth not available, redirecting to login");
+      router.push("/admin/login");
+      setIsLoading(false);
+      return;
+    }
+
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         // Só faz o controle de expiração se o usuário está autenticado
