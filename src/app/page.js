@@ -66,7 +66,7 @@ export const metadata = {
     images: ["/assets/thumbnail.jpg"],
   },
   other: {
-    "google-site-verification": "jIbU4BYULeE_XJZo-2yGSOdfyz-3v0JuI0mqUItNU-4",
+    "ahrefs-site-verification": "82c218a9238c1303fc6ea599a71311ccf7f6f4cff05f861270a0be21d621ce09",
     'article:published_time': new Date().toISOString(),
     'article:modified_time': new Date().toISOString(),
     'article:author': 'NPi Imóveis',
