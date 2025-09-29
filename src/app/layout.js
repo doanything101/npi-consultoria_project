@@ -92,6 +92,7 @@ export default function RootLayout({ children }) {
     <html lang="pt-BR">
       <head>
         {/* 🔧 ACESSIBILIDADE CORRIGIDA: Meta viewport permite zoom geral */}
+        <script src="https://analytics.ahrefs.com/analytics.js" data-key="fx6G+yMiQ6dTIZYrQeqbgQ" async></script>
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, viewport-fit=cover"

@@ -66,8 +66,8 @@ export const metadata = {
     images: ["/assets/thumbnail.jpg"],
   },
   other: {
-    // "ahrefs-site-verification": "82c218a9238c1303fc6ea599a71311ccf7f6f4cff05f861270a0be21d621ce09",
-    "msvalidate.01": "B200EF46986C5A4DBC1EE8A53EA61F1C",
+    "ahrefs-site-verification": "82c218a9238c1303fc6ea599a71311ccf7f6f4cff05f861270a0be21d621ce09",
+    // "msvalidate.01": "B200EF46986C5A4DBC1EE8A53EA61F1C",
     'article:published_time': new Date().toISOString(),
     'article:modified_time': new Date().toISOString(),
     'article:author': 'NPi Imóveis',
