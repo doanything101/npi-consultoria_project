@@ -200,11 +200,20 @@ export default function BuscaImoveis() {
       canonicalLink.setAttribute("rel", "canonical");
       document.head.appendChild(canonicalLink);
     }
-    const canonicalUrl =
-      (window?.location?.origin || baseUrl) +
-      (window?.location?.pathname || "") +
-      (window?.location?.search || "");
-    canonicalLink.setAttribute("href", canonicalUrl);
+    
+    // Construir URL canônica limpa (sem parâmetros problemáticos)
+    const cleanUrl = new URL(window?.location?.pathname || "/busca", window?.location?.origin || baseUrl);
+    
+    // Adicionar apenas parâmetros essenciais para SEO
+    const essentialParams = ['cidade', 'finalidade', 'categoria', 'bairros', 'quartos', 'precoMin', 'precoMax'];
+    essentialParams.forEach(param => {
+      const value = new URLSearchParams(window?.location?.search || "").get(param);
+      if (value) {
+        cleanUrl.searchParams.set(param, value);
+      }
+    });
+    
+    canonicalLink.setAttribute("href", cleanUrl.toString());
   };
 
   /* ======================== URL / SEO HELPERS ======================== */

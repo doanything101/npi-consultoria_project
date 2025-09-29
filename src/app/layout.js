@@ -53,7 +53,7 @@ export const metadata = {
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    url: "https://npiconsultoria.com.br",
+    url: process.env.NEXT_PUBLIC_SITE_URL || "https://npiconsultoria.com.br",
     siteName: "NPi Consultoria",
     title: "NPi Consultoria - Imóveis de Alto Padrão",
     description: "Especialistas em imóveis de alto padrão com a melhor consultoria imobiliária.",

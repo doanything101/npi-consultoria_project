@@ -198,6 +198,9 @@ if (isGoogleBot && blockedPathsForBots.some(path => pathname.startsWith(path))) 
     let hasCanonicalIssues = false;
     const cleanParams = new URLSearchParams();
     
+    // Parâmetros essenciais para SEO (manter sempre)
+    const essentialParams = ['cidade', 'finalidade', 'categoria', 'bairros', 'quartos', 'precoMin', 'precoMax'];
+    
     // Limpar parâmetros duplicados e vazios
     for (const [key, value] of searchParams) {
       // Skip parâmetros vazios ou duplicados problemáticos
@@ -222,8 +225,8 @@ if (isGoogleBot && blockedPathsForBots.some(path => pathname.startsWith(path))) 
         continue; // Skip áreas vazias
       }
       
-      // Manter parâmetros válidos
-      if (value || ['pagina', 'listagem'].includes(key)) {
+      // Manter apenas parâmetros essenciais ou com valor válido
+      if (essentialParams.includes(key) || (value && value.trim())) {
         cleanParams.set(key, value);
       } else if (!value) {
         hasCanonicalIssues = true;

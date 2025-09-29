@@ -33,26 +33,42 @@ export async function GET() {
             },
         ];
 
-        // 3. URLs de IMÓVEIS com PRIORIDADE MÁXIMA (core business)
-        const sitemapImoveis = dynamicPages.map((page) => ({
-            url: `${baseUrl}/imovel-${page.codigo}/${page.slug}`,
-            lastModified: new Date(page.updatedAt),
-            changeFrequency: 'daily', // Imóveis mudam status/preço frequentemente
-            priority: 0.9, // PRIORIDADE ALTA - core business
-        }));
+        // 3. URLs de IMÓVEIS com PRIORIDADE MÁXIMA (core business) - APENAS URLs VÁLIDAS
+        const sitemapImoveis = dynamicPages
+            .filter(page => page.codigo && page.slug) // Garantir que tem ambos
+            .map((page) => ({
+                url: `${baseUrl}/imovel-${page.codigo}/${page.slug}`,
+                lastModified: new Date(page.updatedAt),
+                changeFrequency: 'daily', // Imóveis mudam status/preço frequentemente
+                priority: 0.9, // PRIORIDADE ALTA - core business
+            }));
 
-        // 4. URLs genéricas com prioridade menor
-        const sitemapEntries = dynamicPages.map((page) => ({
-            url: `${baseUrl}/${page.slug}`,
-            lastModified: new Date(page.updatedAt),
-            changeFrequency: 'weekly',
-            priority: 0.6, // Prioridade menor para URLs genéricas
-        }));
+        // 4. URLs genéricas REMOVIDAS - podem causar redirects
+        // const sitemapEntries = dynamicPages.map((page) => ({
+        //     url: `${baseUrl}/${page.slug}`,
+        //     lastModified: new Date(page.updatedAt),
+        //     changeFrequency: 'weekly',
+        //     priority: 0.6, // Prioridade menor para URLs genéricas
+        // }));
 
-        // 5. Combinar tudo com ORDEM ESTRATÉGICA (mais importantes primeiro)
-        const sitemap = [...staticUrls, ...sitemapImoveis, ...sitemapEntries];
+        // 5. Combinar apenas URLs estáticas e de imóveis válidas
+        const sitemap = [...staticUrls, ...sitemapImoveis];
 
-        // 6. Retorne o XML OTIMIZADO
+        // 6. Validar URLs antes de incluir no sitemap
+        const validSitemap = sitemap.filter(entry => {
+            // Verificar se URL é válida
+            try {
+                new URL(entry.url);
+                return true;
+            } catch {
+                console.warn(`URL inválida removida do sitemap: ${entry.url}`);
+                return false;
+            }
+        });
+
+        console.log(`Sitemap final: ${validSitemap.length} URLs válidas`);
+
+        // 7. Retorne o XML OTIMIZADO
         return new Response(
             `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
@@ -61,7 +77,7 @@ export async function GET() {
         xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-${sitemap.map((entry) => `  <url>
+${validSitemap.map((entry) => `  <url>
     <loc>${entry.url}</loc>
     ${entry.lastModified ? `<lastmod>${entry.lastModified.toISOString()}</lastmod>` : ''}
     ${entry.changeFrequency ? `<changefreq>${entry.changeFrequency}</changefreq>` : ''}
@@ -129,12 +145,33 @@ async function fetchDynamicPages() {
             return [];
         }
 
-        // Retorna os dados otimizados com lastModified atual
-        return data.data.map(item => ({
-            codigo: item.Codigo,
-            slug: item.Slug,
-            updatedAt: new Date().toISOString() // Data atual para forçar refresh
-        }));
+        // Filtrar e validar URLs para evitar redirects no sitemap
+        const validPages = data.data
+            .filter(item => {
+                // Validar se tem código e slug válidos
+                if (!item.Codigo || !item.Slug) return false;
+                
+                // Validar se o slug não contém caracteres problemáticos
+                const slug = item.Slug.toString();
+                if (slug.includes('facebook.com') || 
+                    slug.includes('instagram.com') || 
+                    slug.includes('indexdata') ||
+                    slug.includes('http') ||
+                    slug.includes('www.') ||
+                    slug.length < 3) {
+                    return false;
+                }
+                
+                return true;
+            })
+            .map(item => ({
+                codigo: item.Codigo,
+                slug: item.Slug,
+                updatedAt: new Date().toISOString()
+            }));
+
+        console.log(`Sitemap: ${validPages.length} URLs válidas encontradas`);
+        return validPages;
     } catch (error) {
         console.error('Erro ao buscar páginas dinâmicas:', error);
         return [];

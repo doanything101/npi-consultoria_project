@@ -32,9 +32,9 @@ export const metadata = {
     'max-snippet': -1,
   },
   alternates: {
-    canonical: "/",
+    canonical: process.env.NEXT_PUBLIC_SITE_URL || 'https://npiconsultoria.com.br',
     languages: {
-      "pt-BR": "/",
+      "pt-BR": process.env.NEXT_PUBLIC_SITE_URL || 'https://npiconsultoria.com.br',
     },
   },
   openGraph: {
