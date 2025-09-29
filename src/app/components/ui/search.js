@@ -12,7 +12,7 @@ export default function Search() {
           <Input placeholder="Cidade" />
           {/* Botão */}
           <a
-            href="/properties"
+            href="/busca"
             className="rounded-md min-w-[200px] bg-zinc-950 px-3.5 py-4 text-white text-xs font-semibold  shadow-sm hover:bg-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           >
             Buscar Imóveis

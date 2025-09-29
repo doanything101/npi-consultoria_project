@@ -21,8 +21,8 @@ export function HeroHub() {
           criada pela NPi Imóveis.
         </p>
         <a
-          href="#"
-          className="bg-black text-gray-200 hover:black/20 py-2 px-6 rounded-full text-lg font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg"
+          href="/contato"
+          className="bg-black text-gray-200 hover:bg-gray-800 py-2 px-6 rounded-full text-lg font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg"
         >
           Faça parte do HUB
         </a>
