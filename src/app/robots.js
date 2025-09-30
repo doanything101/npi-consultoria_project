@@ -4,7 +4,7 @@
  * @returns {import('next').MetadataRoute.Robots}
  */
 export default function robots() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://npiconsultoria.com.br';
   return {
     rules: [
       {

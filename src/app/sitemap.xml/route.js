@@ -1,6 +1,9 @@
 export async function GET() {
     try {
         const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://npiconsultoria.com.br';
+        
+        // Log sitemap generation for debugging
+        console.log(`🗺️ [SITEMAP] Generating sitemap with baseUrl: ${baseUrl}`);
 
         // 1. Busque os slugs dinâmicos (do banco de dados, CMS, etc.)
         const dynamicPages = await fetchDynamicPages() || [];
@@ -92,10 +95,12 @@ ${validSitemap.map((entry) => `  <url>
             }
         );
     } catch (error) {
-        console.error('Erro ao gerar sitemap:', error);
+        console.error('🚨 [SITEMAP] Erro ao gerar sitemap:', error);
+        console.error('🚨 [SITEMAP] Stack trace:', error.stack);
 
         // FALLBACK otimizado com prioridades corretas
         const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://npiconsultoria.com.br';
+        console.log(`🗺️ [SITEMAP] Using fallback sitemap with baseUrl: ${baseUrl}`);
         const staticUrls = [
             { url: baseUrl, priority: 1.0, changeFrequency: 'weekly' },
             { url: `${baseUrl}/sobre/hub-imobiliarias`, priority: 0.8, changeFrequency: 'weekly' },
@@ -124,6 +129,8 @@ ${staticUrls.map((entry) => `  <url>
 
 async function fetchDynamicPages() {
     const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://npiconsultoria.com.br'
+    
+    console.log(`🔍 [SITEMAP] Fetching dynamic pages from: ${baseUrl}/api/imoveis/slug`);
 
     try {
         const res = await fetch(`${baseUrl}/api/imoveis/slug`, {
@@ -134,14 +141,14 @@ async function fetchDynamicPages() {
         });
 
         if (!res.ok) {
-            console.error('Falha ao buscar slugs:', res.status);
+            console.error(`🚨 [SITEMAP] Falha ao buscar slugs: ${res.status} ${res.statusText}`);
             return [];
         }
 
         const data = await res.json();
 
         if (!data || !data.data) {
-            console.error('Formato de resposta inválido:', data);
+            console.error('🚨 [SITEMAP] Formato de resposta inválido:', data);
             return [];
         }
 
@@ -170,10 +177,11 @@ async function fetchDynamicPages() {
                 updatedAt: new Date().toISOString()
             }));
 
-        console.log(`Sitemap: ${validPages.length} URLs válidas encontradas`);
+        console.log(`✅ [SITEMAP] ${validPages.length} URLs válidas encontradas`);
         return validPages;
     } catch (error) {
-        console.error('Erro ao buscar páginas dinâmicas:', error);
+        console.error('🚨 [SITEMAP] Erro ao buscar páginas dinâmicas:', error);
+        console.error('🚨 [SITEMAP] Stack trace:', error.stack);
         return [];
     }
 }
