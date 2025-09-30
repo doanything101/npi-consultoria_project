@@ -206,11 +206,6 @@ export default function robots() {
         userAgent: 'bedrockbot',
         allow: '/',
       },
-      {
-        userAgent: '*',
-        allow: '/',
-        Sitemap: "https://npi-consultoria-project.vercel.app/sitemap.xml"
-      }
     ],
     host: baseUrl,
     sitemap: `${baseUrl}/sitemap.xml`,
