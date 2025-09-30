@@ -208,6 +208,6 @@ export default function robots() {
       },
     ],
     host: baseUrl,
-    sitemap: `${baseUrl}/sitemap.xml`,
+    sitemap: `${baseUrl}/sitemap-index.xml`,
   };
 }

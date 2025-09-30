@@ -61,19 +61,32 @@ export async function GET() {
         const validSitemap = sitemap.filter(entry => {
             // Verificar se URL é válida
             try {
-                new URL(entry.url);
+                const url = new URL(entry.url);
+                // Verificar se é HTTPS e domínio correto
+                if (url.protocol !== 'https:') {
+                    console.warn(`🚨 URL sem HTTPS removida: ${entry.url}`);
+                    return false;
+                }
+                if (!url.hostname.includes('npiconsultoria.com.br')) {
+                    console.warn(`🚨 URL com domínio incorreto removida: ${entry.url}`);
+                    return false;
+                }
+                // Verificar se não é muito longa (limite do Google)
+                if (entry.url.length > 2048) {
+                    console.warn(`🚨 URL muito longa removida: ${entry.url}`);
+                    return false;
+                }
                 return true;
             } catch {
-                console.warn(`URL inválida removida do sitemap: ${entry.url}`);
+                console.warn(`🚨 URL inválida removida do sitemap: ${entry.url}`);
                 return false;
             }
         });
 
         console.log(`Sitemap final: ${validSitemap.length} URLs válidas`);
 
-        // 7. Retorne o XML OTIMIZADO
-        return new Response(
-            `<?xml version="1.0" encoding="UTF-8"?>
+        // 7. Retorne o XML OTIMIZADO com encoding correto
+        const xmlContent = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
@@ -86,14 +99,17 @@ ${validSitemap.map((entry) => `  <url>
     ${entry.changeFrequency ? `<changefreq>${entry.changeFrequency}</changefreq>` : ''}
     ${entry.priority ? `<priority>${entry.priority}</priority>` : ''}
   </url>`).join('\n')}
-</urlset>`,
-            {
-                headers: {
-                    'Content-Type': 'application/xml',
-                    'Cache-Control': 'public, max-age=3600', // Cache por 1 hora
-                },
-            }
-        );
+</urlset>`;
+
+        console.log(`📊 [SITEMAP] XML Size: ${xmlContent.length} bytes, URLs: ${validSitemap.length}`);
+
+        return new Response(xmlContent, {
+            headers: {
+                'Content-Type': 'application/xml; charset=utf-8',
+                'Cache-Control': 'public, max-age=3600', // Cache por 1 hora
+                'Content-Length': xmlContent.length.toString(),
+            },
+        });
     } catch (error) {
         console.error('🚨 [SITEMAP] Erro ao gerar sitemap:', error);
         console.error('🚨 [SITEMAP] Stack trace:', error.stack);
@@ -108,22 +124,24 @@ ${validSitemap.map((entry) => `  <url>
             { url: `${baseUrl}/venda-seu-imovel`, priority: 0.8, changeFrequency: 'weekly' },
         ];
 
-        return new Response(
-            `<?xml version="1.0" encoding="UTF-8"?>
+        const fallbackXmlContent = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${staticUrls.map((entry) => `  <url>
     <loc>${entry.url}</loc>
     <changefreq>${entry.changeFrequency}</changefreq>
     <priority>${entry.priority}</priority>
   </url>`).join('\n')}
-</urlset>`,
-            {
-                headers: {
-                    'Content-Type': 'application/xml',
-                    'Cache-Control': 'public, max-age=3600',
-                },
-            }
-        );
+</urlset>`;
+
+        console.log(`📊 [SITEMAP-FALLBACK] XML Size: ${fallbackXmlContent.length} bytes, URLs: ${staticUrls.length}`);
+
+        return new Response(fallbackXmlContent, {
+            headers: {
+                'Content-Type': 'application/xml; charset=utf-8',
+                'Cache-Control': 'public, max-age=3600',
+                'Content-Length': fallbackXmlContent.length.toString(),
+            },
+        });
     }
 }
 
