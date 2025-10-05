@@ -10,10 +10,14 @@ export async function GET() {
   <sitemap>
     <loc>${baseUrl}/sitemap.xml</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
   </sitemap>
   <sitemap>
     <loc>${baseUrl}/sitemap-static.xml</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </sitemap>
 </sitemapindex>`;
 

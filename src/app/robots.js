@@ -1,4 +1,4 @@
-// src/app/robots.js - CORRIGIDO PARA GSC
+// src/app/robots.js - OPTIMIZED FOR GSC INDEXING
 
 /**
  * @returns {import('next').MetadataRoute.Robots}
@@ -15,9 +15,11 @@ export default function robots() {
           '/_next/static/',
           '/_next/data/',
           '/admin/',
-          '/dashboard/'
+          '/dashboard/',
+          '/login',
+          '/cadastro',
+          '/recuperar-senha'
         ],
-        // REMOVIDO: crawlDelay: 1, - Googlebot ignora
       },
       
       {
@@ -28,9 +30,11 @@ export default function robots() {
           '/_next/static/',
           '/_next/data/',
           '/admin/',
-          '/dashboard/'
+          '/dashboard/',
+          '/login',
+          '/cadastro',
+          '/recuperar-senha'
         ],
-        // REMOVIDO: crawlDelay: 1,
       },
       
       {
@@ -41,9 +45,11 @@ export default function robots() {
           '/_next/static/',
           '/_next/data/',
           '/admin/',
-          '/dashboard/'
+          '/dashboard/',
+          '/login',
+          '/cadastro',
+          '/recuperar-senha'
         ],
-        // REMOVIDO: crawlDelay: 2,
       },
       
       // ✅ OpenAI (ChatGPT, GPTs) - MANTIDO

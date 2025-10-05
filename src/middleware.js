@@ -28,7 +28,6 @@ export async function middleware(request) {
   if (isUrlProblematica) {
     console.log(`🚨🚨🚨 [MIDDLEWARE] URL PROBLEMÁTICA DETECTADA: ${pathname}`);
     console.log(`🚨🚨🚨 [MIDDLEWARE] User-Agent: ${userAgent.substring(0, 100)}`);
-    console.log(`🚨🚨🚨 [MIDDLEWARE] Is GoogleBot: ${isGoogleBot}`);
     console.log(`🚨🚨🚨 [MIDDLEWARE] Referer: ${request.headers.get('referer') || 'N/A'}`);
   }
 
@@ -161,7 +160,7 @@ export async function middleware(request) {
 
   // 🚨 CORREÇÃO GSC #3: BLOQUEAR PARÂMETROS PROBLEMÁTICOS PARA BOTS
   if (isGoogleBot) {
-    const problematicParams = ['utm_source', 'utm_medium', 'utm_campaign', 'fbclid', 'gclid', 'ref', 'v', 'cache', 't'];
+    const problematicParams = ['utm_source', 'utm_medium', 'utm_campaign', 'fbclid', 'gclid', 'ref', 'v', 'cache', 't', '_rsc'];
     let hasProblematicParams = false;
     
     problematicParams.forEach(param => {
@@ -188,10 +187,10 @@ export async function middleware(request) {
   ];
   
 
-if (isGoogleBot && blockedPathsForBots.some(path => pathname.startsWith(path))) {
-  console.log('🚫 [GSC] Bloqueando path para bot:', pathname);
-  return new NextResponse(null, { status: 404 });
- }
+  if (isGoogleBot && blockedPathsForBots.some(path => pathname.startsWith(path))) {
+    console.log('🚫 [GSC] Bloqueando path para bot:', pathname);
+    return new NextResponse(null, { status: 404 });
+  }
 
   // 🚨 CORREÇÃO CANONICAL #4: URLs de busca malformadas
   if (pathname === '/busca' || pathname === '/busca/') {
@@ -371,9 +370,9 @@ if (isGoogleBot && blockedPathsForBots.some(path => pathname.startsWith(path))) 
       console.error('🔍 [MIDDLEWARE] ❌ Erro API:', error.message);
     }
     
-    // 🎯 SOLUÇÃO UNIVERSAL: Se imóvel não existe → BUSCA RELEVANTE
-    console.log(`🔍 [MIDDLEWARE] 🔍 Imóvel não encontrado → BUSCA RELEVANTE: ${pathname}`);
-    return NextResponse.redirect(new URL('/busca', origin), 301);
+    // 🎯 SOLUÇÃO UNIVERSAL: Se imóvel não existe → 404 NATURAL
+    console.log(`🔍 [MIDDLEWARE] 🔍 Imóvel não encontrado → 404 NATURAL: ${pathname}`);
+    return NextResponse.next(); // Let Next.js handle 404 naturally
   }
 
   // ✅ OUTRAS URLs COM TRAILING SLASH (não imóveis) 
@@ -511,10 +510,10 @@ if (isGoogleBot && blockedPathsForBots.some(path => pathname.startsWith(path))) 
         const data = await response.json();
         const imovel = data.data;
         
-        // Se imóvel NÃO EXISTE (deletado do banco) → REDIRECT HOME
+        // Se imóvel NÃO EXISTE (deletado do banco) → 404 NATURAL
         if (!imovel) {
-          console.log(`🔍 [MIDDLEWARE] 🏠 Imóvel não existe → HOME: ${pathname}`);
-          return NextResponse.redirect(new URL('/', origin), 301);
+          console.log(`🔍 [MIDDLEWARE] 🔍 Imóvel não existe → 404 NATURAL: ${pathname}`);
+          return NextResponse.next(); // Let Next.js handle 404 naturally
         }
         
         // ✅ IMÓVEL EXISTE (mesmo que vendido) → Continuar normal

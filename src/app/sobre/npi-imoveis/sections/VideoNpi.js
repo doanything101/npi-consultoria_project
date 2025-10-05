@@ -137,6 +137,12 @@ export default function VideoNpi({ missao }) {
                 frameBorder="0"
                 allowFullScreen
                 className="w-full h-full"
+                onError={(e) => {
+                  console.error('❌ Erro ao carregar vídeo:', e);
+                  // Fallback: ocultar iframe e mostrar mensagem
+                  e.target.style.display = 'none';
+                  e.target.parentElement.innerHTML = '<div class="flex items-center justify-center h-full bg-gray-100 text-gray-600">Vídeo temporariamente indisponível</div>';
+                }}
               ></iframe>
             </div>
           </div>

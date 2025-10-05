@@ -2,10 +2,15 @@ import { connectToDatabase } from "@/app/lib/mongodb";
 import Imovel from "@/app/models/Imovel";
 import ImovelAtivo from "@/app/models/ImovelAtivo";
 import { NextResponse } from "next/server";
+import { getCorsHeaders, handleCors } from "../cors-headers";
 
 export const dynamic = 'force-dynamic';
 
 export async function GET(request, { params }) {
+  // Handle CORS preflight
+  const corsResponse = handleCors(request);
+  if (corsResponse) return corsResponse;
+
   // Extrair o id dos parâmetros (este id é o Codigo do imóvel)
   const { id } = params;
 
@@ -21,13 +26,18 @@ export async function GET(request, { params }) {
           status: 404,
           error: "Imóvel não encontrado",
         },
-        { status: 404 }
+        { 
+          status: 404,
+          headers: getCorsHeaders()
+        }
       );
     }
 
     return NextResponse.json({
       status: 200,
       data: imovel,
+    }, {
+      headers: getCorsHeaders()
     });
   } catch (error) {
     console.error(`Erro ao buscar imóvel com Codigo ${id}:`, error);
@@ -36,7 +46,10 @@ export async function GET(request, { params }) {
         status: 500,
         error: error instanceof Error ? error.message : "Erro desconhecido",
       },
-      { status: 500 }
+      { 
+        status: 500,
+        headers: getCorsHeaders()
+      }
     );
   }
 }

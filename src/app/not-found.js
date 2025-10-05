@@ -5,8 +5,14 @@ import Link from "next/link";
 // ✅ ADICIONADO: Metadata para página 404
 export const metadata = {
   title: "Página não encontrada - NPi Consultoria",
-  description: "A página que você está procurando não foi encontrada.",
-  // Não definir robots - Google entende 404 naturalmente
+  description: "A página que você está procurando não foi encontrada. Explore nossos imóveis de alto padrão.",
+  robots: {
+    index: false,
+    follow: true,
+  },
+  alternates: {
+    canonical: process.env.NEXT_PUBLIC_SITE_URL || 'https://npiconsultoria.com.br',
+  },
 };
 
 export default function NotFound() {

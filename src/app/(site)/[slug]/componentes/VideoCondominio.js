@@ -4,6 +4,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import { logger } from '@/app/utils/logger';
 
 export default function VideoCondominio({ condominio }) {
     const [videoLoaded, setVideoLoaded] = useState(false);
@@ -12,7 +13,7 @@ export default function VideoCondominio({ condominio }) {
     const [videoMetadata, setVideoMetadata] = useState(null);
     
     // 🔍 DEBUG LOGGING
-    console.log('🎬 VideoCondominio iniciado para:', condominio?.Empreendimento);
+    logger.dev('🎬 VideoCondominio iniciado para:', condominio?.Empreendimento);
     
     // 🚨 FUNÇÃO CRÍTICA: Limpar URLs mal formadas do banco
     const cleanMalformedUrl = (url) => {
@@ -35,10 +36,9 @@ export default function VideoCondominio({ condominio }) {
         
         // Remove URLs que são apenas canais ou playlists
         if (url.includes('/@') || url.includes('/channel/') || url.includes('/user/') || 
-            url.includes('/c/') || url.includes('UC3TnMJs2iCksc46bTQyd-fw') ||
-            url === 'https://www.youtube.com/watch?v=' ||
+            url.includes('/c/') || url === 'https://www.youtube.com/watch?v=' ||
             url.includes('/playlist')) {
-            console.log('❌ URL inválida (canal/playlist):', url);
+            logger.warn('❌ URL inválida (canal/playlist):', url);
             return null;
         }
         
@@ -47,10 +47,10 @@ export default function VideoCondominio({ condominio }) {
     
     // 🎯 EXTRAÇÃO ROBUSTA DO VIDEO ID
     const extractVideoId = () => {
-        console.log('🔍 Iniciando extração de Video ID');
+        logger.dev('🔍 Iniciando extração de Video ID');
         
         if (!condominio?.Video) {
-            console.log('❌ Sem dados de vídeo');
+            logger.debug('❌ Sem dados de vídeo');
             return null;
         }
         
@@ -140,48 +140,82 @@ export default function VideoCondominio({ condominio }) {
     const testThumbnail = async (videoId) => {
         const qualities = ['maxresdefault', 'hqdefault', 'mqdefault', 'default'];
         
+        // Para evitar CORS issues, vamos usar uma abordagem diferente
+        // Primeiro, tentar a melhor qualidade disponível
         for (const quality of qualities) {
             const url = `https://i.ytimg.com/vi/${videoId}/${quality}.jpg`;
-            try {
-                const response = await fetch(url, { 
-                    method: 'HEAD',
-                    mode: 'no-cors' // Evita CORS issues
+            
+            // Criar uma promise que resolve se a imagem carrega
+            const testImageLoad = () => {
+                return new Promise((resolve, reject) => {
+                    const img = new Image();
+                    img.onload = () => resolve(url);
+                    img.onerror = () => reject(new Error('Image failed to load'));
+                    img.src = url;
+                    
+                    // Timeout após 3 segundos
+                    setTimeout(() => reject(new Error('Timeout')), 3000);
                 });
-                
-                // Com no-cors não podemos verificar status, então assumimos que existe
-                console.log('✅ Usando thumbnail:', url);
+            };
+            
+            try {
+                await testImageLoad();
+                console.log('✅ Thumbnail válida encontrada:', quality);
                 return url;
             } catch (error) {
-                console.log('⚠️ Erro ao testar thumbnail:', quality);
+                console.log(`⚠️ Thumbnail ${quality} não disponível:`, error.message);
             }
         }
         
-        // Fallback para thumbnail padrão
+        // Se nenhuma qualidade específica funcionar, usar hqdefault como fallback
+        console.log('⚠️ Usando thumbnail fallback padrão');
         return `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
     };
     
     // 📊 BUSCAR METADADOS DO VÍDEO
     const fetchVideoMetadata = async (videoId) => {
         try {
-            // Tentar API oEmbed do YouTube
+            // Tentar API oEmbed do YouTube com timeout e melhor tratamento de erro
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 5000); // 5s timeout
+            
             const response = await fetch(
-                `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`
+                `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`,
+                {
+                    signal: controller.signal,
+                    headers: {
+                        'Accept': 'application/json',
+                    }
+                }
             );
+            
+            clearTimeout(timeoutId);
             
             if (response.ok) {
                 const data = await response.json();
-                return {
-                    title: data.title || `Tour virtual - ${condominio.Empreendimento}`,
-                    author: data.author_name || 'NPI Consultoria',
-                    authorUrl: data.author_url || 'https://www.npiconsultoria.com.br',
-                    // YouTube oEmbed não retorna duração, usar estimativa
-                    duration: estimateVideoDuration(),
-                    uploadDate: condominio.DataCadastro || new Date().toISOString(),
-                    description: generateVideoDescription()
-                };
+                
+                // Verificar se a resposta contém dados válidos
+                if (data.title && data.title !== 'Video unavailable') {
+                    return {
+                        title: data.title,
+                        author: data.author_name || 'NPI Consultoria',
+                        authorUrl: data.author_url || 'https://www.npiconsultoria.com.br',
+                        duration: estimateVideoDuration(),
+                        uploadDate: condominio.DataCadastro || new Date().toISOString(),
+                        description: generateVideoDescription()
+                    };
+                }
+            } else if (response.status === 404) {
+                console.log('❌ Vídeo não encontrado (404) - usando fallback');
+            } else {
+                console.log(`⚠️ Erro na API oEmbed (${response.status}) - usando fallback`);
             }
         } catch (error) {
-            console.log('⚠️ Erro ao buscar metadados, usando fallback');
+            if (error.name === 'AbortError') {
+                console.log('⏰ Timeout na API oEmbed - usando fallback');
+            } else {
+                console.log('⚠️ Erro ao buscar metadados:', error.message);
+            }
         }
         
         // Metadados fallback
@@ -189,7 +223,7 @@ export default function VideoCondominio({ condominio }) {
             title: `Tour virtual - ${condominio.Empreendimento}`,
             author: 'NPI Consultoria',
             authorUrl: 'https://www.npiconsultoria.com.br',
-            duration: 'PT2M30S', // 2:30 padrão
+            duration: estimateVideoDuration(),
             uploadDate: condominio.DataCadastro || new Date().toISOString(),
             description: generateVideoDescription()
         };

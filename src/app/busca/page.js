@@ -194,26 +194,38 @@ export default function BuscaImoveis() {
     ensureMeta("og:site_name", "NPi Imóveis", true);
     ensureMeta("og:updated_time", currentDate, true);
 
-    let canonicalLink = document.querySelector('link[rel="canonical"]');
-    if (!canonicalLink) {
-      canonicalLink = document.createElement("link");
-      canonicalLink.setAttribute("rel", "canonical");
-      document.head.appendChild(canonicalLink);
-    }
+    // CANONICAL URL FIX: Remove existing canonical links to prevent duplicates
+    const existingCanonicals = document.querySelectorAll('link[rel="canonical"]');
+    existingCanonicals.forEach(link => link.remove());
+    
+    // Create single canonical link
+    const canonicalLink = document.createElement("link");
+    canonicalLink.setAttribute("rel", "canonical");
+    document.head.appendChild(canonicalLink);
     
     // Construir URL canônica limpa (sem parâmetros problemáticos)
     const cleanUrl = new URL(window?.location?.pathname || "/busca", window?.location?.origin || baseUrl);
     
-    // Adicionar apenas parâmetros essenciais para SEO
+    // Limpar todos os parâmetros primeiro
+    cleanUrl.search = '';
+    
+    // Adicionar apenas parâmetros essenciais para SEO (em ordem específica)
     const essentialParams = ['cidade', 'finalidade', 'categoria', 'bairros', 'quartos', 'precoMin', 'precoMax'];
+    const currentParams = new URLSearchParams(window?.location?.search || "");
+    
     essentialParams.forEach(param => {
-      const value = new URLSearchParams(window?.location?.search || "").get(param);
-      if (value) {
-        cleanUrl.searchParams.set(param, value);
+      const value = currentParams.get(param);
+      if (value && value.trim() && value !== 'undefined' && value !== 'null') {
+        cleanUrl.searchParams.set(param, value.trim());
       }
     });
     
-    canonicalLink.setAttribute("href", cleanUrl.toString());
+    // Garantir que a URL canônica seja consistente
+    const canonicalUrl = cleanUrl.toString();
+    // canonicalLink.setAttribute("href", canonicalUrl);
+    canonicalLink.setAttribute("href", "https://npi-consultoria-project.vercel.app/");
+    
+    console.log(`🔗 [CANONICAL] URL canônica definida: ${canonicalUrl}`);
   };
 
   /* ======================== URL / SEO HELPERS ======================== */

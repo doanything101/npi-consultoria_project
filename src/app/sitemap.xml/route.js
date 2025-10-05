@@ -10,7 +10,13 @@ export async function GET() {
             { 
                 url: baseUrl, 
                 priority: 1.0, 
-                changeFrequency: 'weekly',
+                changeFrequency: 'daily',
+                lastModified: new Date()
+            },
+            { 
+                url: `${baseUrl}/busca`, 
+                priority: 0.9, 
+                changeFrequency: 'daily',
                 lastModified: new Date()
             },
             { 
@@ -29,6 +35,18 @@ export async function GET() {
                 url: `${baseUrl}/venda-seu-imovel`, 
                 priority: 0.8, 
                 changeFrequency: 'weekly',
+                lastModified: new Date()
+            },
+            { 
+                url: `${baseUrl}/sobre`, 
+                priority: 0.7, 
+                changeFrequency: 'monthly',
+                lastModified: new Date()
+            },
+            { 
+                url: `${baseUrl}/contato`, 
+                priority: 0.7, 
+                changeFrequency: 'monthly',
                 lastModified: new Date()
             },
         ];

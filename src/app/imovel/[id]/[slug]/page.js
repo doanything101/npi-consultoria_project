@@ -458,6 +458,9 @@ export async function generateMetadata({ params }) {
         'max-video-preview': -1,
         'max-image-preview': 'large',
         'max-snippet': -1,
+        'noarchive': false,
+        'nosnippet': false,
+        'noimageindex': false,
       },
       openGraph: {
         title,
@@ -529,8 +532,8 @@ export default async function ImovelPage({ params }) {
   
   // Fix canonical mismatch: Handle undefined IDs properly
   if (!id || id === 'undefined' || id === 'null' || !/^\d+$/.test(id)) {
-    console.log(`🚨 [CANONICAL-FIX] Invalid ID detected: "${id}" - redirecting to search`);
-    redirect('/busca');
+    console.log(`🚨 [CANONICAL-FIX] Invalid ID detected: "${id}" - returning 404`);
+    notFound();
   }
   
   // RASTREAMENTO DETALHADO: URLs problemáticas específicas do CSV
@@ -544,8 +547,8 @@ export default async function ImovelPage({ params }) {
     console.log(`🚨🚨🚨 [IMOVEL-PAGE] ★★★ SLUG INVÁLIDO DETECTADO ★★★`);
     console.log(`🚨🚨🚨 [IMOVEL-PAGE] ID: ${id}, SLUG PROBLEMÁTICO: ${slug}`);
     console.log(`🚨🚨🚨 [IMOVEL-PAGE] URL COMPLETA: /imovel-${id}/${slug}`);
-    console.log(`🚨🚨🚨 [IMOVEL-PAGE] Redirecionando para: /imovel-${id}`);
-    redirect(`/imovel-${id}`);
+    console.log(`🚨🚨🚨 [IMOVEL-PAGE] Returning 404 for invalid slug`);
+    notFound();
   }
   
   try {
@@ -640,6 +643,19 @@ export default async function ImovelPage({ params }) {
 {(() => {
   if (!imovel?.Video) return null;
   
+  // IDs problemáticos conhecidos que causam erro "Video isn't on a watch page"
+  const problematicIds = [
+    '4Aq7szgycT4',
+    'undefined',
+    'null',
+    '',
+    'UC3TnMJs2iCksc46bTQyd-fw',
+    '3quadras_imobiliaria',
+    'poweredbypilar',
+    'ganzaroli.imoveis',
+    'avereimoveis'
+  ];
+  
   // Se for objeto vazio, não renderizar
   if (typeof imovel.Video === 'object' && !Array.isArray(imovel.Video)) {
     // Verificar se tem algum valor válido
@@ -652,17 +668,16 @@ export default async function ImovelPage({ params }) {
       v !== '' && 
       v !== 'null' && 
       v !== 'undefined' &&
-      v !== '4Aq7szgycT4' // ID problemático específico
+      !problematicIds.some(id => v.includes(id))
     );
     
     if (!temValorValido) return null;
   }
   
-  // Se for string, verificar se não é vazia ou o ID problemático
+  // Se for string, verificar se não é vazia ou problemática
   if (typeof imovel.Video === 'string') {
     if (imovel.Video === '' || 
-        imovel.Video === '4Aq7szgycT4' ||
-        imovel.Video.includes('4Aq7szgycT4')) {
+        problematicIds.some(id => imovel.Video.includes(id))) {
       return null;
     }
   }

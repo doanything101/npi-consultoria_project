@@ -1,0 +1,515 @@
+{
+  "videoErrors": [
+    {
+      "file": "src/app/sobre/npi-imoveis/sections/VideoNpi.js",
+      "issue": "Falta tratamento para \"Video unavailable\"",
+      "severity": "medium"
+    },
+    {
+      "file": "src/app/sobre/npi-imoveis/sections/VideoNpi.js",
+      "issue": "Falta timeout para requests de vídeo",
+      "severity": "high"
+    }
+  ],
+  "consoleErrors": [
+    {
+      "file": "src\\app\\(site)\\[slug]\\componentes\\Contato.js",
+      "issue": "Console.error sem try/catch",
+      "severity": "medium"
+    },
+    {
+      "file": "src\\app\\(site)\\[slug]\\componentes\\property-table-owner.js",
+      "issue": "Possível acesso a variável undefined",
+      "severity": "high"
+    },
+    {
+      "file": "src\\app\\(site)\\[slug]\\componentes\\SobreCondominio.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\(site)\\[slug]\\componentes\\VideoCondominio.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\(site)\\[slug]\\page.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\admin\\configuracoes\\page.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\admin\\corretores\\editar\\[id]\\page.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\admin\\corretores\\page.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\admin\\destacados\\page.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\admin\\gerenciar-site\\components\\sections\\image-section.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\admin\\imoveis\\components\\filters.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\admin\\imoveis\\gerenciar\\@components\\FieldGroup.jsx",
+      "issue": "Possível acesso a variável undefined",
+      "severity": "high"
+    },
+    {
+      "file": "src\\app\\admin\\imoveis\\gerenciar\\@components\\hooks\\useImageUpload.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\admin\\imoveis\\gerenciar\\@components\\hooks\\useImovelForm.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\admin\\imoveis\\gerenciar\\@components\\hooks\\useImovelSubmit.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\admin\\imoveis\\gerenciar\\@components\\sections\\BrokerSection.jsx",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\admin\\imoveis\\gerenciar\\@components\\sections\\ImagesSection.jsx",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\admin\\imoveis\\gerenciar\\@components\\sections\\MediaSection.jsx",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\admin\\imoveis\\gerenciar\\@components\\sections\\VincularImovel.jsx",
+      "issue": "Possível acesso a variável undefined",
+      "severity": "high"
+    },
+    {
+      "file": "src\\app\\admin\\imoveis\\gerenciar\\GerenciarImovelClient.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\admin\\imoveis\\page.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\admin\\services\\imoveis.js",
+      "issue": "Possível acesso a variável undefined",
+      "severity": "high"
+    },
+    {
+      "file": "src\\app\\admin\\services\\index.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\api\\admin\\cities\\route.js",
+      "issue": "Possível acesso a variável undefined",
+      "severity": "high"
+    },
+    {
+      "file": "src\\app\\api\\admin\\cities\\stats\\route.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\api\\admin\\fix-slugs\\route.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\api\\admin\\imoveis\\[id]\\route.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\api\\cities\\auto-sync\\route.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\api\\cities\\migrate\\route.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\api\\cities\\[id]\\route.js",
+      "issue": "Possível acesso a variável undefined",
+      "severity": "high"
+    },
+    {
+      "file": "src\\app\\api\\condominios\\slug\\route.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\api\\imoveis\\similar\\route.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\api\\redirect\\imovel\\[id]\\route.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\api\\resolve-imovel-redirect\\[id]\\route.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\api\\webhooks\\city-sync\\route.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\busca\\components\\map-component.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\busca\\components\\map-mobile.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\busca\\metadata.js",
+      "issue": "Possível acesso a variável undefined",
+      "severity": "high"
+    },
+    {
+      "file": "src\\app\\busca\\page.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\components\\admin\\ImageUpload.jsx",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\components\\maps\\MapWithDetails.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\components\\sections\\action-section.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\components\\sections\\contact-section.js",
+      "issue": "Console.error sem try/catch",
+      "severity": "medium"
+    },
+    {
+      "file": "src\\app\\components\\ui\\button.js",
+      "issue": "Possível acesso a variável undefined",
+      "severity": "high"
+    },
+    {
+      "file": "src\\app\\components\\ui\\exit-intent-modal.js",
+      "issue": "Console.error sem try/catch",
+      "severity": "medium"
+    },
+    {
+      "file": "src\\app\\error.js",
+      "issue": "Console.error sem try/catch",
+      "severity": "medium"
+    },
+    {
+      "file": "src\\app\\hooks\\useSeoUrls.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\imovel\\[id]\\[slug]\\componentes\\capture-router.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\imovel\\[id]\\[slug]\\componentes\\Contato.js",
+      "issue": "Console.error sem try/catch",
+      "severity": "medium"
+    },
+    {
+      "file": "src\\app\\imovel\\[id]\\[slug]\\componentes\\Contato.js",
+      "issue": "Possível acesso a variável undefined",
+      "severity": "high"
+    },
+    {
+      "file": "src\\app\\imovel\\[id]\\[slug]\\componentes\\similar-properties.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\imovel\\[id]\\[slug]\\componentes\\VideoCondominio.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\imovel\\[id]\\[slug]\\page.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\lib\\axios-client.ts",
+      "issue": "Console.error sem try/catch",
+      "severity": "medium"
+    },
+    {
+      "file": "src\\app\\services\\index.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\sitemap-index.xml\\route.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\sitemap-static.xml\\route.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\sobre\\npi-imoveis\\sections\\VideoNpi.js",
+      "issue": "Console.error sem try/catch",
+      "severity": "medium"
+    },
+    {
+      "file": "src\\app\\utils\\city-sync-helper.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\utils\\formatter-real.js",
+      "issue": "Possível acesso a variável undefined",
+      "severity": "high"
+    },
+    {
+      "file": "src\\app\\utils\\logger.js",
+      "issue": "Console.error sem try/catch",
+      "severity": "medium"
+    },
+    {
+      "file": "src\\app\\utils\\photoSorter.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\utils\\test-formatter-value.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\app\\utils\\test-formatter-value.js",
+      "issue": "Possível acesso a variável undefined",
+      "severity": "high"
+    },
+    {
+      "file": "src\\app\\utils\\url-slugs.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\middleware.js",
+      "issue": "Console.log sem verificação de ambiente",
+      "severity": "low"
+    },
+    {
+      "file": "src\\middleware.js",
+      "issue": "Possível acesso a variável undefined",
+      "severity": "high"
+    }
+  ],
+  "seoErrors": [
+    {
+      "file": "src/app/page.js",
+      "issue": "Falta metadata para SEO",
+      "severity": "high"
+    },
+    {
+      "file": "src/app/busca/page.js",
+      "issue": "Falta metadata para SEO",
+      "severity": "high"
+    }
+  ],
+  "performanceErrors": [
+    {
+      "file": "src\\app\\admin\\automacao\\page.js",
+      "issue": "Fetch sem timeout pode causar travamento",
+      "severity": "medium"
+    },
+    {
+      "file": "src\\app\\admin\\corretores\\page.js",
+      "issue": "Fetch sem timeout pode causar travamento",
+      "severity": "medium"
+    },
+    {
+      "file": "src\\app\\admin\\gerenciar-site\\components\\sections\\hub-image-section.js",
+      "issue": "Fetch sem timeout pode causar travamento",
+      "severity": "medium"
+    },
+    {
+      "file": "src\\app\\admin\\gerenciar-site\\components\\sections\\image-section.js",
+      "issue": "Fetch sem timeout pode causar travamento",
+      "severity": "medium"
+    },
+    {
+      "file": "src\\app\\admin\\gerenciar-site\\components\\sections\\logos-parceiros-section.js",
+      "issue": "Fetch sem timeout pode causar travamento",
+      "severity": "medium"
+    },
+    {
+      "file": "src\\app\\admin\\gerenciar-site\\components\\sections\\nossos-servicos-section.js",
+      "issue": "Fetch sem timeout pode causar travamento",
+      "severity": "medium"
+    },
+    {
+      "file": "src\\app\\admin\\gerenciar-site\\components\\sections\\testemunhos-section.js",
+      "issue": "Fetch sem timeout pode causar travamento",
+      "severity": "medium"
+    },
+    {
+      "file": "src\\app\\admin\\gerenciar-site\\components\\tabs\\home-tab.js",
+      "issue": "Fetch sem timeout pode causar travamento",
+      "severity": "medium"
+    },
+    {
+      "file": "src\\app\\admin\\gerenciar-site\\components\\tabs\\hub-tab.js",
+      "issue": "Fetch sem timeout pode causar travamento",
+      "severity": "medium"
+    },
+    {
+      "file": "src\\app\\admin\\gerenciar-site\\components\\tabs\\servicos-tab.js",
+      "issue": "Fetch sem timeout pode causar travamento",
+      "severity": "medium"
+    },
+    {
+      "file": "src\\app\\admin\\gerenciar-site\\components\\tabs\\sobre-tab.js",
+      "issue": "Fetch sem timeout pode causar travamento",
+      "severity": "medium"
+    },
+    {
+      "file": "src\\app\\admin\\gerenciar-site\\page.js",
+      "issue": "Fetch sem timeout pode causar travamento",
+      "severity": "medium"
+    },
+    {
+      "file": "src\\app\\admin\\imoveis\\gerenciar\\@components\\hooks\\useImovelForm.js",
+      "issue": "Fetch sem timeout pode causar travamento",
+      "severity": "medium"
+    },
+    {
+      "file": "src\\app\\admin\\imoveis\\gerenciar\\@components\\sections\\ImagesSection.jsx",
+      "issue": "Fetch sem timeout pode causar travamento",
+      "severity": "medium"
+    },
+    {
+      "file": "src\\app\\admin\\imoveis\\page.js",
+      "issue": "Fetch sem timeout pode causar travamento",
+      "severity": "medium"
+    },
+    {
+      "file": "src\\app\\admin\\redirect\\page.js",
+      "issue": "Fetch sem timeout pode causar travamento",
+      "severity": "medium"
+    },
+    {
+      "file": "src\\app\\admin\\services\\upload.js",
+      "issue": "Fetch sem timeout pode causar travamento",
+      "severity": "medium"
+    },
+    {
+      "file": "src\\app\\api\\webhooks\\city-sync\\route.js",
+      "issue": "Fetch sem timeout pode causar travamento",
+      "severity": "medium"
+    },
+    {
+      "file": "src\\app\\busca\\components\\map-component.js",
+      "issue": "Fetch sem timeout pode causar travamento",
+      "severity": "medium"
+    },
+    {
+      "file": "src\\app\\busca\\components\\map-mobile.js",
+      "issue": "Fetch sem timeout pode causar travamento",
+      "severity": "medium"
+    },
+    {
+      "file": "src\\app\\components\\admin\\ImageUpload.jsx",
+      "issue": "Fetch sem timeout pode causar travamento",
+      "severity": "medium"
+    },
+    {
+      "file": "src\\app\\components\\maps\\MapWithDetails.js",
+      "issue": "Fetch sem timeout pode causar travamento",
+      "severity": "medium"
+    },
+    {
+      "file": "src\\app\\components\\shared\\slide-partners.js",
+      "issue": "Fetch sem timeout pode causar travamento",
+      "severity": "medium"
+    },
+    {
+      "file": "src\\app\\lib\\firebase-admin.ts",
+      "issue": "Import * pode impactar performance",
+      "severity": "medium"
+    },
+    {
+      "file": "src\\app\\services\\index.js",
+      "issue": "Fetch sem timeout pode causar travamento",
+      "severity": "medium"
+    },
+    {
+      "file": "src\\app\\sitemap.xml\\route.js",
+      "issue": "Fetch sem timeout pode causar travamento",
+      "severity": "medium"
+    },
+    {
+      "file": "src\\app\\utils\\city-sync-helper.js",
+      "issue": "Fetch sem timeout pode causar travamento",
+      "severity": "medium"
+    },
+    {
+      "file": "src\\app\\utils\\s3-upload.js",
+      "issue": "Fetch sem timeout pode causar travamento",
+      "severity": "medium"
+    },
+    {
+      "file": "src\\app\\utils\\url-slugs.js",
+      "issue": "Fetch sem timeout pode causar travamento",
+      "severity": "medium"
+    },
+    {
+      "file": "src\\middleware.js",
+      "issue": "Fetch sem timeout pode causar travamento",
+      "severity": "medium"
+    }
+  ]
+}

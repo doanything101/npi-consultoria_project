@@ -1,8 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect } from "react";
 
-export default function Error({ reset }) {
+export default function Error({ error, reset }) {
+  useEffect(() => {
+    // Log error for monitoring
+    console.error('Application Error:', error);
+  }, [error]);
+
   return (
     <div className="flex flex-col min-h-screen">
       <main className="flex-grow flex items-center justify-center bg-zinc-100 min-h-[700px]">
