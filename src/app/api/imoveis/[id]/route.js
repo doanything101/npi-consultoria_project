@@ -2,7 +2,7 @@ import { connectToDatabase } from "@/app/lib/mongodb";
 import Imovel from "@/app/models/Imovel";
 import ImovelAtivo from "@/app/models/ImovelAtivo";
 import { NextResponse } from "next/server";
-import { getCorsHeaders, handleCors } from "../cors-headers";
+import { getCorsHeaders, handleCors } from "../../cors-headers";
 
 export const dynamic = 'force-dynamic';
 
