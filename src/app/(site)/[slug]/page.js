@@ -330,7 +330,7 @@ export async function generateMetadata({ params }) {
                          primeiraFoto?.FotoPequena ||
                          `${process.env.NEXT_PUBLIC_SITE_URL}/og-image.png`;
   
-  const currentUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/${slug}`;
+  const currentUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/${slug}`;console.log( currentUrl )
   
   // ✅ Gerar data para o condomínio
   const modifiedDate = new Date().toISOString();
