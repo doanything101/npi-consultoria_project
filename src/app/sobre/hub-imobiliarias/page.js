@@ -28,13 +28,13 @@ export const metadata = {
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    url: "https://www.npiconsultoria.com.br/sobre/hub-imobiliarias",
+    url: "https://npi-consultoria-project.vercel.app//sobre/hub-imobiliarias",
     siteName: "NPi Imóveis",
     title: "Hub de Imobiliárias Boutique de Alto Padrão | NPi Imóveis",
     description: "Descubra o Hub Imobiliárias da NPi: plataforma exclusiva que conecta imobiliárias boutique de alto padrão, oferecendo soluções inovadoras e resultados excepcionais no mercado imobiliário de luxo.",
     images: [
       {
-        url: "https://www.npiconsultoria.com.br/assets/images/hub-imobiliarias-og.jpg",
+        url: "https://npi-consultoria-project.vercel.app//assets/images/hub-imobiliarias-og.jpg",
         width: 1200,
         height: 630,
         alt: "Hub de Imobiliárias Boutique NPi Imóveis",
@@ -48,12 +48,12 @@ export const metadata = {
     creator: "@npiimoveis",
     title: "Hub de Imobiliárias Boutique de Alto Padrão | NPi Imóveis",
     description: "Descubra o Hub Imobiliárias da NPi: plataforma exclusiva que conecta imobiliárias boutique de alto padrão, oferecendo soluções inovadoras e resultados excepcionais.",
-    images: ["https://www.npiconsultoria.com.br/assets/images/hub-imobiliarias-twitter.jpg"],
+    images: ["https://npi-consultoria-project.vercel.app//assets/images/hub-imobiliarias-twitter.jpg"],
   },
   alternates: {
-    canonical: "https://www.npiconsultoria.com.br/sobre/hub-imobiliarias",
+    canonical: "https://npi-consultoria-project.vercel.app//sobre/hub-imobiliarias",
     languages: {
-      'pt-BR': "https://www.npiconsultoria.com.br/sobre/hub-imobiliarias",
+      'pt-BR': "https://npi-consultoria-project.vercel.app//sobre/hub-imobiliarias",
     },
   },
   other: {
@@ -71,12 +71,12 @@ const structuredData = {
   "@type": "WebPage",
   name: "Hub de Imobiliárias Boutique de Alto Padrão",
   description: "Descubra o Hub Imobiliárias da NPi: plataforma exclusiva que conecta imobiliárias boutique de alto padrão, oferecendo soluções inovadoras e resultados excepcionais no mercado imobiliário de luxo.",
-  url: "https://www.npiconsultoria.com.br/sobre/hub-imobiliarias",
+  url: "https://npi-consultoria-project.vercel.app//sobre/hub-imobiliarias",
   mainEntity: {
     "@type": "Organization",
     name: "NPi Imóveis",
-    url: "https://www.npiconsultoria.com.br",
-    logo: "https://www.npiconsultoria.com.br/assets/images/logo-npi.png",
+    url: "https://npi-consultoria-project.vercel.app/",
+    logo: "https://npi-consultoria-project.vercel.app//assets/images/logo-npi.png",
     sameAs: [
       "https://www.instagram.com/npiimoveis",
       "https://www.linkedin.com/company/npi-imoveis",
@@ -103,19 +103,19 @@ const structuredData = {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://www.npiconsultoria.com.br"
+        item: "https://npi-consultoria-project.vercel.app/"
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Sobre",
-        item: "https://www.npiconsultoria.com.br/sobre"
+        item: "https://npi-consultoria-project.vercel.app//sobre"
       },
       {
         "@type": "ListItem",
         position: 3,
         name: "Hub Imobiliárias",
-        item: "https://www.npiconsultoria.com.br/sobre/hub-imobiliarias"
+        item: "https://npi-consultoria-project.vercel.app//sobre/hub-imobiliarias"
       }
     ]
   },
@@ -130,7 +130,7 @@ const structuredData = {
     name: "NPi Imóveis",
     logo: {
       "@type": "ImageObject",
-      url: "https://www.npiconsultoria.com.br/assets/images/logo-npi.png"
+      url: "https://npi-consultoria-project.vercel.app//assets/images/logo-npi.png"
     }
   }
 };

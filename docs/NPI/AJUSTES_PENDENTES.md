@@ -24,7 +24,7 @@
 **Status**: Pendente
 
 **Objetivo**: Criar URLs semânticas para melhorar SEO
-**Exemplo**: `https://www.npiconsultoria.com.br/busca/comprar/apartamento/guaruja`
+**Exemplo**: `https://npi-consultoria-project.vercel.app//busca/comprar/apartamento/guaruja`
 
 **Implementação**:
 - Modificar roteamento em `src/app/busca/`

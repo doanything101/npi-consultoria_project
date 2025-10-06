@@ -199,7 +199,7 @@ export default function VideoCondominio({ condominio }) {
                     return {
                         title: data.title,
                         author: data.author_name || 'NPI Consultoria',
-                        authorUrl: data.author_url || 'https://www.npiconsultoria.com.br',
+                        authorUrl: data.author_url || 'https://npi-consultoria-project.vercel.app/',
                         duration: estimateVideoDuration(),
                         uploadDate: condominio.DataCadastro || new Date().toISOString(),
                         description: generateVideoDescription()
@@ -222,7 +222,7 @@ export default function VideoCondominio({ condominio }) {
         return {
             title: `Tour virtual - ${condominio.Empreendimento}`,
             author: 'NPI Consultoria',
-            authorUrl: 'https://www.npiconsultoria.com.br',
+            authorUrl: 'https://npi-consultoria-project.vercel.app/',
             duration: estimateVideoDuration(),
             uploadDate: condominio.DataCadastro || new Date().toISOString(),
             description: generateVideoDescription()
@@ -329,7 +329,7 @@ export default function VideoCondominio({ condominio }) {
             "name": "NPI Consultoria",
             "logo": {
                 "@type": "ImageObject",
-                "url": "https://www.npiconsultoria.com.br/logo.png",
+                "url": "https://npi-consultoria-project.vercel.app//logo.png",
                 "width": 600,
                 "height": 60
             }
@@ -337,7 +337,7 @@ export default function VideoCondominio({ condominio }) {
         "author": {
             "@type": "Organization",
             "name": videoMetadata?.author || "NPI Consultoria",
-            "url": videoMetadata?.authorUrl || "https://www.npiconsultoria.com.br"
+            "url": videoMetadata?.authorUrl || "https://npi-consultoria-project.vercel.app/"
         }
     };
     
