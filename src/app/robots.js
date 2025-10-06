@@ -214,6 +214,6 @@ export default function robots() {
       },
     ],
     host: baseUrl,
-    sitemap: `${baseUrl}/sitemap-index.xml`,
+    sitemap: `${baseUrl}/sitemap.xml`,
   };
 }
