@@ -223,7 +223,7 @@ export default function BuscaImoveis() {
     // Garantir que a URL canônica seja consistente
     const canonicalUrl = cleanUrl.toString();
     // canonicalLink.setAttribute("href", canonicalUrl);
-    canonicalLink.setAttribute("href", "https://npi-consultoria-project.vercel.app/");
+    canonicalLink.setAttribute("href", "https://www.npiconsultoria.com.br");
     
     console.log(`🔗 [CANONICAL] URL canônica definida: ${canonicalUrl}`);
   };

@@ -105,7 +105,7 @@ const handleUpload = (fieldId, file) => {
 **Status**: Pendente
 
 **Problema**: Imóvel em lançamento mostra "R$ undefined" em vez de "QUERO UM IMÓVEL NESTE CONDOMÍNIO"
-**Exemplo**: https://npi-consultoria-project.vercel.app//imovel-741265/sao-paulo-bay-even
+**Exemplo**: https://www.npiconsultoria.com.br/imovel-741265/sao-paulo-bay-even
 
 **Investigar**:
 - Lógica de exibição de preço vs. botão de interesse
@@ -137,7 +137,7 @@ if (isLancamento && !temPreco) {
 **Status**: Pendente
 
 **Problema**: Ao duplicar imóvel, metragem muda no card mas não na lista
-**Exemplo**: Cobertura duplicada em https://npi-consultoria-project.vercel.app//opera-vila-nova
+**Exemplo**: Cobertura duplicada em https://www.npiconsultoria.com.br/opera-vila-nova
 
 **Investigar**:
 - Processo de duplicação no admin

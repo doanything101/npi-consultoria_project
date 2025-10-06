@@ -156,7 +156,7 @@ AWS_SECRET_ACCESS_KEY=...
 AWS_REGION=sa-east-1
 
 # Site Configuration
-NEXT_PUBLIC_SITE_URL=https://npi-consultoria-project.vercel.app/
+NEXT_PUBLIC_SITE_URL=https://www.npiconsultoria.com.br
 ```
 
 **Setup**: Run `vercel env pull .env.local` to get all environment variables locally.

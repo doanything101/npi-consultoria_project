@@ -25,13 +25,13 @@ export const metadata = {
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    url: "https://npi-consultoria-project.vercel.app//venda-seu-imovel",
+    url: "https://www.npiconsultoria.com.br/venda-seu-imovel",
     siteName: "NPI Consultoria",
     title: "Venda ou Alugue seu Imóvel com o HUB DE IMOBILIÁRIAS BOUTIQUE DE ALTO PADRÃO | NPi",
     description: "Cadastre gratuitamente seu imóvel no HUB DE IMOBILIÁRIAS BOUTIQUE DE ALTO PADRÃO, e dê visibilidade a ele na maior vitrine do mundo, o GOOGLE.",
     images: [
       {
-        url: "https://npi-consultoria-project.vercel.app//assets/images/imoveis/02.jpg",
+        url: "https://www.npiconsultoria.com.br/assets/images/imoveis/02.jpg",
         width: 1200,
         height: 630,
         alt: "Venda ou alugue seu imóvel com o HUB da NPI",
@@ -45,12 +45,12 @@ export const metadata = {
     creator: "@NPIImoveis",
     title: "Venda ou Alugue seu Imóvel com o HUB DE IMOBILIÁRIAS BOUTIQUE DE ALTO PADRÃO | NPi",
     description: "Cadastre gratuitamente seu imóvel no HUB DE IMOBILIÁRIAS BOUTIQUE DE ALTO PADRÃO, e dê visibilidade a ele na maior vitrine do mundo, o GOOGLE.",
-    images: ["https://npi-consultoria-project.vercel.app//assets/images/imoveis/02.jpg"],
+    images: ["https://www.npiconsultoria.com.br/assets/images/imoveis/02.jpg"],
   },
   alternates: {
-    canonical: "https://npi-consultoria-project.vercel.app//venda-seu-imovel",
+    canonical: "https://www.npiconsultoria.com.br/venda-seu-imovel",
     languages: {
-      'pt-BR': "https://npi-consultoria-project.vercel.app//venda-seu-imovel",
+      'pt-BR': "https://www.npiconsultoria.com.br/venda-seu-imovel",
     },
   },
   other: {
@@ -68,12 +68,12 @@ const structuredData = {
   "@type": "WebPage",
   name: "Venda ou Alugue seu Imóvel com o HUB DE IMOBILIÁRIAS BOUTIQUE DE ALTO PADRÃO | NPi",
   description: "Cadastre gratuitamente seu imóvel para venda ou locação no HUB DE IMOBILIÁRIAS BOUTIQUE DE ALTO PADRÃO, e dê visibilidade a ele na maior vitrine do mundo, o GOOGLE.",
-  url: "https://npi-consultoria-project.vercel.app//venda-seu-imovel",
+  url: "https://www.npiconsultoria.com.br/venda-seu-imovel",
   mainEntity: {
     "@type": "RealEstateAgent",
     name: "NPI Consultoria",
-    url: "https://npi-consultoria-project.vercel.app/",
-    logo: "https://npi-consultoria-project.vercel.app//assets/images/logo-npi.png",
+    url: "https://www.npiconsultoria.com.br",
+    logo: "https://www.npiconsultoria.com.br/assets/images/logo-npi.png",
     sameAs: [
       "https://www.instagram.com/npiconsultoria",
       "https://www.linkedin.com/company/npi-consultoria",
@@ -101,13 +101,13 @@ const structuredData = {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://npi-consultoria-project.vercel.app/"
+        item: "https://www.npiconsultoria.com.br"
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Venda seu Imóvel",
-        item: "https://npi-consultoria-project.vercel.app//venda-seu-imovel"
+        item: "https://www.npiconsultoria.com.br/venda-seu-imovel"
       }
     ]
   },
@@ -122,7 +122,7 @@ const structuredData = {
     name: "NPI Consultoria",
     logo: {
       "@type": "ImageObject",
-      url: "https://npi-consultoria-project.vercel.app//assets/images/logo-npi.png"
+      url: "https://www.npiconsultoria.com.br/assets/images/logo-npi.png"
     }
   }
 };

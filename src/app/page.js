@@ -33,12 +33,12 @@ export const metadata = {
   },
   alternates: {
     canonical: process.env.NEXT_PUBLIC_SITE_URL, // || 'https://npiconsultoria.com.br',
-    // canonical: 'https://npi-consultoria-project.vercel.app/',
+    // canonical: 'https://www.npiconsultoria.com.br',
     languages: {
       "pt-BR": process.env.NEXT_PUBLIC_SITE_URL// || 'https://npiconsultoria.com.br',
     },
     // languages: {
-    //   "pt-BR": process.env.NEXT_PUBLIC_SITE_URL || 'https://npi-consultoria-project.vercel.app/',
+    //   "pt-BR": process.env.NEXT_PUBLIC_SITE_URL || 'https://www.npiconsultoria.com.br',
     // },
   },
   openGraph: {

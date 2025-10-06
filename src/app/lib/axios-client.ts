@@ -8,11 +8,11 @@ const getBaseUrl = () => {
 
     // Se estiver no servidor, usa URL absoluta para API interna
     if (isServer) {
-      return process.env.NEXT_PUBLIC_API_URL || "https://npi-consultoria-project.vercel.app//api/";
+      return process.env.NEXT_PUBLIC_API_URL || "https://www.npiconsultoria.com.br/api/";
     }
 
     // No cliente em produção, usa URL completa
-    return process.env.NEXT_PUBLIC_API_URL || "https://npi-consultoria-project.vercel.app//api/";
+    return process.env.NEXT_PUBLIC_API_URL || "https://www.npiconsultoria.com.br/api/";
   }
 
   // Em desenvolvimento, usa localhost
