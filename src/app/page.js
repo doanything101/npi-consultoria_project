@@ -32,7 +32,8 @@ export const metadata = {
     'max-snippet': -1,
   },
   alternates: {
-    canonical: process.env.NEXT_PUBLIC_SITE_URL || 'https://npiconsultoria.com.br',
+    // canonical: process.env.NEXT_PUBLIC_SITE_URL || 'https://npiconsultoria.com.br',
+    canonical: 'https://npi-consultoria-project.vercel.app/',
     languages: {
       "pt-BR": process.env.NEXT_PUBLIC_SITE_URL || 'https://npiconsultoria.com.br',
     },
