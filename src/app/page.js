@@ -34,8 +34,11 @@ export const metadata = {
   alternates: {
     // canonical: process.env.NEXT_PUBLIC_SITE_URL || 'https://npiconsultoria.com.br',
     canonical: 'https://npi-consultoria-project.vercel.app/',
+    // languages: {
+    //   "pt-BR": process.env.NEXT_PUBLIC_SITE_URL || 'https://npiconsultoria.com.br',
+    // },
     languages: {
-      "pt-BR": process.env.NEXT_PUBLIC_SITE_URL || 'https://npiconsultoria.com.br',
+      "pt-BR": process.env.NEXT_PUBLIC_SITE_URL || 'https://npi-consultoria-project.vercel.app/',
     },
   },
   openGraph: {
